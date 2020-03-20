@@ -49,16 +49,8 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-standard": "^4.0.1",
-    "husky": "^4.2.3",
-    "jest": "^25.1.0",
     "npm-check-updates": "^4.0.4",
     "source-map-explorer": "^2.4.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run build",
-      "pre-push": "npm run build"
-    }
   },
   "browserslist": {
     "production": [
