@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import Toast from 'grommet/components/Toast'
 import Box from 'grommet/components/Box'
+import Label from 'grommet/components/Label'
 import Image from 'grommet/components/Image'
 import web3 from 'web3'
 
@@ -105,20 +107,20 @@ class Home extends Component {
           { this.state.data === '' ?
             <div>
               <Box align="center">
-                <h3>Loading...</h3>
+                <Label align="center">Loading...</Label>
               </Box>
               <Box align="center">
-                <h3>NOTE. Your Metamask should point to Main Network in order to load The Act</h3>
+                <Label align="center">NOTE. Your Metamask should point to Main Network in order to load The Act</Label>
               </Box>
             </div>
             : <Image src={this.state.data} size='large' />
           }
         </Box>
-          { this.state.modalOpen && <div>
-            {this.state.success ? 'ok' : 'critical' }>
+          { this.state.modalOpen && <Toast
+            status={this.state.success ? 'ok' : 'critical' }>
               <p>{ this.state.success ? this.state.success : null }</p>
               <p>{ this.state.failure ? this.state.failure : null }</p>
-              </div>
+            </Toast>
           }
       </Box>
     )

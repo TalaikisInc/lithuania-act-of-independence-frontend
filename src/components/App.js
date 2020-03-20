@@ -4,6 +4,7 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import ReactGA from 'react-ga'
 
 import '../../node_modules/grommet-css'
+import App from 'grommet/components/App'
 import Box from 'grommet/components/Box'
 
 import * as actions from '../actions'
@@ -74,7 +75,7 @@ class _App extends Component {
   }
 
   initGA () {
-    ReactGA.initialize('UA-137539256-1')
+    ReactGA.initialize(process.env.GA_TRACKING_ID)
     // console.log('Initialized')
   }
 
@@ -86,30 +87,32 @@ class _App extends Component {
 
   render() {
     return (
-      <div>
-        <BrowserRouter>
-          <div>
-            <Box align='center' responsive={true} pad='large'>
-              <Status
-                account={this.props.account}
-                metamask={this.props.web3}
-                initiated={this.state.initiated}
-                deployed={this.state.deployed} {...this.props} />
-              <Box align='center' responsive={true} pad='medium'>
-                <Header />
-              </Box>
+      <App>
+        <div>
+          <BrowserRouter>
+            <div>
+              <Box align='center' responsive={true} pad='large'>
+                <Status
+                  account={this.props.account}
+                  metamask={this.props.web3}
+                  initiated={this.state.initiated}
+                  deployed={this.state.deployed} {...this.props} />
+                <Box align='center' responsive={true} pad='medium'>
+                  <Header />
+                </Box>
 
-              { this.state.deployed && typeof this.props.account === 'string' && this.props.account !== 'empty'
-                ? <div>
-                    <Route exact path='/home' component={Home} />
-                  </div>
-                : null
-              }
-            </Box>
-            <Footer />
-          </div>
-        </BrowserRouter>
-      </div>
+                { this.state.deployed && typeof this.props.account === 'string' && this.props.account !== 'empty'
+                  ? <div>
+                      <Route exact path='/home' component={Home} />
+                    </div>
+                  : null
+                }
+              </Box>
+              <Footer />
+            </div>
+          </BrowserRouter>
+        </div>
+      </App>
     )
   }
 }
